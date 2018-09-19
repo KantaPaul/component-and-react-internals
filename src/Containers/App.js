@@ -4,16 +4,53 @@ import Persons from '../Components/Persons/Persons';
 import Cockpit from '../Components/Cockpit/Cockpit';
 
 class App extends Component {
-  state = {
+  constructor (props) {
+    super(props);
     // persons array
-    persons: [
-      {id: 'asdsad45', name: 'Pobon', age: 24},
-      {id: 'fdgdfg45', name: 'Kanta', age: 28},
-      {id: 'asdfdsf65', name: 'Paul', age: 29}
-    ],
-    // showpersons
-    showPerson: false
+    this.state =  {
+      persons: [
+        {id: 'asdsad45', name: 'Pobon', age: 24},
+        {id: 'fdgdfg45', name: 'Kanta', age: 28},
+        {id: 'asdfdsf65', name: 'Paul', age: 29}
+      ],
+      // showpersons
+      showPerson: false
+    }
+    console.log('[App.js] Inside Constructor', props);
   }
+
+  componentWillMount() {
+    console.log('[App.js] Inside componentWillMount')
+  }
+
+  componentDidMount() {
+    console.log('[App.js] Inside componentDidMount')
+  }
+
+  shouldComponentUpdate(nextprops, nextstate) {
+    console.log('UPDATE [App.js] Inside shouldComponentUpdate', nextprops, nextstate);
+    // return true;
+    return nextstate.persons !== this.state.persons || nextstate.showPerson !== this.state.showPerson
+  }
+
+  componentWillUpdate (nextprops, nextstate) {
+    console.log('UPDATE [App.js] Inside componentWillUpdate', nextprops, nextstate)
+  }
+
+  componentDidUpdate() {
+    console.log('UPDATE [App.js] Inside componentDidUpdate')
+  }
+
+  // state = {
+  //   // persons array
+  //   persons: [
+  //     {id: 'asdsad45', name: 'Pobon', age: 24},
+  //     {id: 'fdgdfg45', name: 'Kanta', age: 28},
+  //     {id: 'asdfdsf65', name: 'Paul', age: 29}
+  //   ],
+  //   // showpersons
+  //   showPerson: false
+  // }
 
   // type and preview text
   typingSwitcher = (event, id) => {
@@ -54,7 +91,7 @@ class App extends Component {
   }
 
   render() {
-
+    console.log('[App.js] Inside render')
     // button click show compenent
     let persons = null;
     if (this.state.showPerson) {
@@ -72,6 +109,7 @@ class App extends Component {
     return (
       <div className={MyClass.App}>
         {/* render cockpit component */}
+        <button onClick={() => {this.setState({ showPerson: true })}}>Show Person</button>
         <Cockpit 
           appTitle={this.props.title}
           persons={this.state.persons} 

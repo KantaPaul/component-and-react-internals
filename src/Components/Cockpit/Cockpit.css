@@ -1,4 +1,8 @@
-.red {
+.redbg {
+  background-color: salmon;
+}
+
+.redC {
   color: red;
 }
 
@@ -19,6 +23,6 @@ button {
 button:hover {
   background-color: #000000;
 }
-button.red:hover {
-  background-color: salmon;
+button.redbg:hover {
+  background-color: red;
 }
